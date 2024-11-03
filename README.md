@@ -1,2 +1,6 @@
-# group2_project
-Group Project for Group 2
+# Group 2 Project
+Group 2 consists of:
+- Davidson, Alexis
+- Luu, Nam
+- Owens, Justin
+- Sretenović, Michael
