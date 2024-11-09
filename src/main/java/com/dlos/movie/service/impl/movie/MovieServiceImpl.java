@@ -2,8 +2,11 @@ package com.dlos.movie.service.impl.movie;
 
 import com.dlos.movie.domain.Movie;
 import com.dlos.movie.domain.MovieJson;
+import com.dlos.movie.service.movie.ApiKeyService;
 import com.dlos.movie.service.movie.MovieService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -23,39 +26,20 @@ import java.util.List;
 @Qualifier("MovieServiceImpl")
 public class MovieServiceImpl implements MovieService
 {
-	private final String API_KEY_FILE = "api.key";
-
 	private final String API_URL = "http://www.omdbapi.com/?apikey=";
 
 	private String _apiUrl = "";
 
 	private Boolean _apiKeyLoaded = false;
 
-	public MovieServiceImpl()
+	private RestTemplate _restTemplate = new RestTemplate();
+
+	public MovieServiceImpl(RestTemplateBuilder restTemplateBuilder, ApiKeyService apiKeyService)
 	{
-		_apiUrl = "";
-
-		try (BufferedReader reader = new BufferedReader(new FileReader(API_KEY_FILE)))
-		{
-			String line = reader.readLine();
-
-			if ((line == null) || line.isEmpty())
-			{
-				return;
-			}
-
-			_apiUrl = API_URL + line + "&s=";
-			_apiKeyLoaded = true;
-		} catch (FileNotFoundException e)
-		{
-			System.out.println("API Key File Not Found");
-		} catch (IOException e)
-		{
-			System.out.println("An IO Exception occurred: " + e);
-		} catch (Exception e)
-		{
-			System.out.println("An unknown Exception occurred: " + e);
-		}
+		String apiKey = apiKeyService.getKey();
+		_apiUrl = API_URL + apiKey;
+		_apiKeyLoaded = apiKey != null;
+		_restTemplate = restTemplateBuilder.build();
 	}
 
 	@Override
@@ -108,8 +92,7 @@ public class MovieServiceImpl implements MovieService
 
 	private MovieJson[] querySingleUrl(String url)
 	{
-		RestTemplate restTemplate = new RestTemplate();
-		MovieJson[] movieJsons = restTemplate.getForObject(url, MovieJson[].class);
+		MovieJson[] movieJsons = _restTemplate.getForObject(url, MovieJson[].class);
 		if ((movieJsons == null) || (movieJsons.length == 0))
 		{
 			return new MovieJson[0];
@@ -157,11 +140,10 @@ public class MovieServiceImpl implements MovieService
 
 	private MovieJson[] queryAllUrls(String[] urls)
 	{
-		RestTemplate restTemplate = new RestTemplate();
 		List<MovieJson> movieJsonList = new ArrayList<MovieJson>();
 		for (String url : urls)
 		{
-			MovieJson[] json = restTemplate.getForObject(url, MovieJson[].class);
+			MovieJson[] json = _restTemplate.getForObject(url, MovieJson[].class);
 			if ((json == null) || (json.length == 0))
 			{
 				continue;

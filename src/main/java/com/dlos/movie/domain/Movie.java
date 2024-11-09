@@ -10,6 +10,7 @@ public class Movie
 	private String Title;
 	private String Year;
 	private String Rated;
+	private String Released;
 	private String Runtime;
 	private String[] Genres;
 	private String[] Directors;

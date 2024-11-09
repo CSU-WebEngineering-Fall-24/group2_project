@@ -10,6 +10,7 @@ public class MovieJson
 	private String Title;
 	private String Year;
 	private String Rated;
+	private String Released;
 	private String Runtime;
 	private String Genre;
 	private String Directors;
@@ -38,6 +39,7 @@ public class MovieJson
 		movie.setTitle(Title);
 		movie.setYear(Year);
 		movie.setRated(Rated);
+		movie.setReleased(Released);
 		movie.setRuntime(Runtime);
 		movie.setGenres(Genre.split(","));
 		movie.setDirectors(Directors.split(","));
