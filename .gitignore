@@ -38,3 +38,6 @@ out/
 
 ### Node Modules ###
 node_modules/
+
+### Project Secrets ###
+api.key
