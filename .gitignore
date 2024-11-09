@@ -41,3 +41,7 @@ node_modules/
 
 ### Project Secrets ###
 api.key
+
+### Temp Files ###
+~$*.doc
+~$*.docx
