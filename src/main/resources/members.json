@@ -16,7 +16,7 @@
 	  "longBioImageUrl": ""
 	},
 	{
-	  "id": "",
+	  "id": "o",
 	  "name": "Justin Owens",
 	  "shortBio": "",
 	  "longBio": "",
@@ -26,9 +26,9 @@
 	{
 	  "id": "s",
 	  "name": "Michael K. Sretenović",
-	  "shortBio": "",
-	  "longBio": "",
-	  "shortBioImageUrl": "",
-	  "longBioImageUrl": ""
+	  "shortBio": "I am currently working on my Masters in Computer Science.  This is my last class and I'm very excited to graduate.  I started my career life as a draftsman in architecture.  In 2002, I went back to get my Bachelor's in Computer Science.  While working full time, I went to school part time and graduated in 2009.  I got a job at CallCopy in 2010 and have been a software engineer ever since.  I work at NICE, which is the number one vendor in Call Center as a Service (CCaaS).",
+	  "longBio": "I am currently working on my Masters in Computer Science.  This is my last class and I'm very excited to graduate.  I started my career life as a draftsman in architecture.  In 2002, I went back to get my Bachelor's in Computer Science.  While working full time, I went to school part time and graduated in 2009.  I got a job at CallCopy in 2010 and have been a software engineer ever since.  I work at NICE, which is the number one vendor in Call Center as a Service (CCaaS).  I work on the Media Services team; which is responsible for moving RTP data and audio through our system.  The work on this team is very interesting as most of the processing as close to real time as possible.  The data that can be handled in a less time restricted manner is one of the projects I am working on.  Essentially, anything that is not time sensitive is being moved to another process without adding any additional delays.  This has been quite challenging and I have had a chance to learn quite a bit.",
+	  "shortBioImageUrl": "https://avatars.githubusercontent.com/u/178439261?v=4",
+	  "longBioImageUrl": "https://avatars.githubusercontent.com/u/178439261?v=4"
 	}
 ]
