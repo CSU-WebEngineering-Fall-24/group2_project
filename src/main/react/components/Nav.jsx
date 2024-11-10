@@ -14,20 +14,20 @@ const Nav = (props) => {
 		}
 	]
 	return (
-		<nav className="navbar navbar-expand-lg bg-body-tertiary">
+		<nav className="navbar navbar-expand-sm navbar-bg-custom">
 			<div className="container-fluid">
-				<a className="navbar-brand">Sretenovic</a>
-				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<a className="navbar-brand navbar-color-custom">DLOS Movie Info</a>
+				<button className="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 					<span className="navbar-toggler-icon"></span>
 				</button>
 				<div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-					<div className="navbar-nav">
+					<div className="navbar-nav ms-auto">
 						{pageURLs.map((linkInfo, index) => (
-							<li key={index} className="nav-item">
+							<li key={index} className="nav-item navbar-color-custom">
 								<NavLink
 									to={linkInfo.url}
 									className={({ isActive }) =>
-										"nav-link" + `${isActive ? " active" : ""}`
+										"navbar-color-custom nav-link-custom" + `${isActive ? " custom-active" : ""}`
 									}>
 									{linkInfo.label}
 								</NavLink>
