@@ -20,6 +20,6 @@ public class MemberController
 	@GetMapping("/{id}")
 	public Member getMember(@PathVariable("id") String id) { return _memberService.getMember(id); }
 
-	@GetMapping("/")
+	@GetMapping("")
 	public Member[] getMembers() { return _memberService.getMembers(); }
 }

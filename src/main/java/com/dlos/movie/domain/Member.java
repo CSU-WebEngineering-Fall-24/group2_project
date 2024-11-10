@@ -7,10 +7,10 @@ import lombok.Setter;
 @Setter
 public class Member
 {
-	private String Id;
-	private String Name;
-	private String ShortBio;
-	private String LongBio;
-	private String ShortBioImageUrl;
-	private String LongBioImageUrl;
+	private String id;
+	private String name;
+	private String shortBio;
+	private String longBio;
+	private String shortBioImageUrl;
+	private String longBioImageUrl;
 }
