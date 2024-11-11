@@ -4,5 +4,7 @@ import com.dlos.movie.domain.Movie;
 
 public interface MovieService
 {
-	Movie[] Search(String title, String years, String genres);
+	Movie GetMovie(String id);
+
+	Movie[] Search(String title, String years, String types);
 }

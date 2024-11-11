@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/movies")
+@RequestMapping("/movie")
 public class MovieController
 {
 	private final MovieService _movieService;
@@ -15,9 +15,12 @@ public class MovieController
 	@Autowired
 	public MovieController(@Qualifier("CacheMovieServiceImpl") final MovieService movieService) { _movieService = movieService; }
 
+	@GetMapping("{id}")
+	public Movie Search(@PathVariable("id") String id) { return _movieService.GetMovie(id); }
+
 	@GetMapping("/search")
-	public Movie[] Search(@RequestParam("title") String title, @RequestParam("years") String years, @RequestParam("genres") String genres)
+	public Movie[] Search(@RequestParam("title") String title, @RequestParam("years") String years, @RequestParam("types") String types)
 	{
-		return _movieService.Search(title, years, genres);
+		return _movieService.Search(title, years, types);
 	}
 }

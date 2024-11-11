@@ -25,8 +25,8 @@ class MovieApplicationTests {
 		setReleased("");
 		setRuntime("39 min");
 		setGenre("Short, Action, Sci-Fi");
-		setDirectors("Ben Hernandez");
-		setWriters("James Cameron, Ben Hernandez");
+		setDirector("Ben Hernandez");
+		setWriter("James Cameron, Ben Hernandez");
 		setActors("Loris Basso, James Callahan, Debbie Medows");
 		setPlot("A cyborg comes from the future, to kill a girl named Sarah Lee.");
 		setLanguage("English");
@@ -60,8 +60,8 @@ class MovieApplicationTests {
 		setReleased("27 Jun 1997");
 		setRuntime("93 min");
 		setGenre("Animation, Action, Adventure");
-		setDirectors("Ron Clements, John Musker");
-		setWriters("Ron Clements, John Musker, Don McEnery");
+		setDirector("Ron Clements, John Musker");
+		setWriter("Ron Clements, John Musker, Don McEnery");
 		setActors("Tate Donovan, Susan Egan, James Woods");
 		setPlot("The sons of Zeus and Hera is stripped of his immortality as an infant and must become a true hero in order to reclaim it.");
 		setLanguage("English, Spanish, Greek");

@@ -13,8 +13,8 @@ public class MovieJson
 	private String Released;
 	private String Runtime;
 	private String Genre;
-	private String Directors;
-	private String Writers;
+	private String Director;
+	private String Writer;
 	private String Actors;
 	private String Plot;
 	private String Language;
@@ -33,33 +33,35 @@ public class MovieJson
 	private String Website;
 	private String Response;
 
-	public Movie ToMovie()
+	public Movie toMovie()
 	{
+		final String na = "N/A";
+
 		Movie movie = new Movie();
 		movie.setTitle(Title);
 		movie.setYear(Year);
-		movie.setRated(Rated);
-		movie.setReleased(Released);
+		movie.setRated(Rated.equals(na) ? null : Rated);
+		movie.setReleased(Released.equals(na) ? null : Released);
 		movie.setRuntime(Runtime);
-		movie.setGenres(Genre.split(","));
-		movie.setDirectors(Directors.split(","));
-		movie.setWriters(Writers.split(","));
-		movie.setActors(Actors.split(","));
+		movie.setGenres(Genre == null ? null :  Genre.split(","));
+		movie.setDirectors(Director == null ? null :  Director.split(","));
+		movie.setWriters(Writer == null ? null :  Writer.split(","));
+		movie.setActors(Actors == null ? null :  Actors.split(","));
 		movie.setPlot(Plot);
-		movie.setLanguage(Language.split(","));
+		movie.setLanguage(Language == null ? null :  Language.split(","));
 		movie.setCountry(Country);
-		movie.setAwards(Awards);
-		movie.setPoster(Poster);
+		movie.setAwards(Awards.equals(na) ? null : Awards);
+		movie.setPoster(Poster.equals(na) ? null : Poster);
 		movie.setRatings(Ratings);
-		movie.setMetascore(Metascore);
-		movie.setImdbRating(imdbRating);
+		movie.setMetascore(Metascore.equals(na) ? null : Metascore);
+		movie.setImdbRating(imdbRating.equals(na) ? null : imdbRating);
 		movie.setImdbID(imdbID);
-		movie.setImdbVotes(imdbVotes);
+		movie.setImdbVotes(imdbVotes.equals(na) ? null : imdbVotes);
 		movie.setType(Type);
-		movie.setDVD(DVD);
-		movie.setBoxOffice(BoxOffice);
-		movie.setProduction(Production);
-		movie.setWebsite(Website);
+		movie.setDVD(DVD.equals(na) ? null : DVD);
+		movie.setBoxOffice(BoxOffice.equals(na) ? null : BoxOffice);
+		movie.setProduction(Production.equals(na) ? null : Production);
+		movie.setWebsite(Website.equals(na) ? null : Website);
 		movie.setResponse(Response);
 
 		return movie;

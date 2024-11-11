@@ -2,8 +2,14 @@ package com.dlos.movie.service.impl.movie;
 
 import com.dlos.movie.domain.Movie;
 import com.dlos.movie.domain.MovieJson;
+import com.dlos.movie.domain.SearchResults;
 import com.dlos.movie.service.movie.ApiKeyService;
 import com.dlos.movie.service.movie.MovieService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
@@ -21,9 +27,11 @@ import java.util.List;
 @Qualifier("MovieServiceImpl")
 public class MovieServiceImpl implements MovieService
 {
-	private final String API_URL = "http://www.omdbapi.com/?apikey=";
+	private final String API_URL = "http://www.omdbapi.com?apikey=";
 
-	private String _apiUrl = "";
+	private String _searchApiUrl = "";
+
+	private String _getMovieApiUrl = "";
 
 	private Boolean _apiKeyLoaded = false;
 
@@ -32,13 +40,47 @@ public class MovieServiceImpl implements MovieService
 	public MovieServiceImpl(RestTemplateBuilder restTemplateBuilder, ApiKeyService apiKeyService)
 	{
 		String apiKey = apiKeyService.getKey();
-		_apiUrl = API_URL + apiKey;
 		_apiKeyLoaded = apiKey != null;
+		_searchApiUrl = API_URL + apiKey + "&r=json&s=";
+		_getMovieApiUrl = API_URL + apiKey + "&r=json&i=";
 		_restTemplate = restTemplateBuilder.build();
 	}
 
 	@Override
-	public Movie[] Search(String title, String years, String genres)
+	public Movie GetMovie(String id)
+	{
+		if (!_apiKeyLoaded)
+		{
+			return null;
+		}
+
+		try
+		{
+			String json = _restTemplate.getForObject(_getMovieApiUrl + id, String.class);
+
+			ObjectMapper mapper = JsonMapper.builder()
+				.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
+				.build();
+
+			MovieJson movie = mapper.readValue(json, new TypeReference<MovieJson>()
+			{
+			});
+			if ((movie == null) || (!movie.getResponse().equals("True")))
+			{
+				return null;
+			}
+
+			return movie.toMovie();
+		} catch (JsonProcessingException e)
+		{
+			System.out.println("An exception occurred: " + e);
+		}
+
+		return null;
+	}
+
+	@Override
+	public Movie[] Search(String title, String years, String types)
 	{
 		if (!_apiKeyLoaded)
 		{
@@ -56,22 +98,21 @@ public class MovieServiceImpl implements MovieService
 			yearCount = yearList.length;
 		}
 
-		if ((genres != null) && !genres.isEmpty())
+		if ((types != null) && !types.isEmpty())
 		{
-			genreList = genres.split(",");
+			genreList = types.split(",");
 			genreCount = genreList.length;
 		}
 
 		String encodedTitle = URLEncoder.encode(title, StandardCharsets.UTF_8);
-		String baseUrl = _apiUrl + encodedTitle;
+		String baseUrl = _searchApiUrl + encodedTitle;
 		MovieJson[] movieJsons = null;
 
 		int totalUrls = yearCount * genreCount;
 		if (totalUrls == 0)
 		{
 			movieJsons = querySingleUrl(baseUrl);
-		}
-		else
+		} else
 		{
 			String[] urls = createUrls(baseUrl, yearList, genreList);
 			movieJsons = queryAllUrls(urls);
@@ -80,26 +121,20 @@ public class MovieServiceImpl implements MovieService
 		Movie[] movies = new Movie[movieJsons.length];
 		for (int i = 0; i < movieJsons.length; ++i)
 		{
-			movies[i] = movieJsons[i].ToMovie();
+			movies[i] = movieJsons[i].toMovie();
 		}
 		return movies;
 	}
 
 	private MovieJson[] querySingleUrl(String url)
 	{
-		MovieJson[] movieJsons = _restTemplate.getForObject(url, MovieJson[].class);
-		if ((movieJsons == null) || (movieJsons.length == 0))
-		{
-			return new MovieJson[0];
-		}
-
-		return movieJsons;
+		return queryAllUrls(new String[]{url});
 	}
 
-	private String[] createUrls(String baseUrl, String[] years, String[] genres)
+	private String[] createUrls(String baseUrl, String[] years, String[] types)
 	{
 		int yearCount = years.length;
-		int genreCount = genres.length;
+		int genreCount = types.length;
 		int totalUrls = yearCount * genreCount;
 
 		String[] urls = new String[totalUrls == 0 ? 1 : totalUrls];
@@ -109,9 +144,9 @@ public class MovieServiceImpl implements MovieService
 			for (String year : years)
 			{
 				String url = baseUrl + "&y=" + year;
-				for (String genre : genres)
+				for (String type : types)
 				{
-					String nextUrl = url + "&type=" + genre;
+					String nextUrl = url + "&type=" + type;
 					urls[index] = nextUrl;
 					++index;
 				}
@@ -138,12 +173,25 @@ public class MovieServiceImpl implements MovieService
 		List<MovieJson> movieJsonList = new ArrayList<MovieJson>();
 		for (String url : urls)
 		{
-			MovieJson[] json = _restTemplate.getForObject(url, MovieJson[].class);
-			if ((json == null) || (json.length == 0))
+			try
 			{
-				continue;
+				String json = _restTemplate.getForObject(url, String.class);
+
+				ObjectMapper mapper = JsonMapper.builder()
+					.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
+					.build();
+
+				SearchResults results = mapper.readValue(json, new TypeReference<SearchResults>() {});
+				if ((results == null) || (!results.getResponse().equals("True")))
+				{
+					continue;
+				}
+
+				movieJsonList.addAll(Arrays.asList(results.getSearch()));
+			} catch (JsonProcessingException e)
+			{
+				System.out.println("An exception occurred: " + e);
 			}
-			movieJsonList.addAll(Arrays.asList(json));
 		}
 
 		return movieJsonList.toArray(new MovieJson[0]);
