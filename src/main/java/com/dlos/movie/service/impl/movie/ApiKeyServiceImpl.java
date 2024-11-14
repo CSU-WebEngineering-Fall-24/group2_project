@@ -1,6 +1,7 @@
 package com.dlos.movie.service.impl.movie;
 
 import com.dlos.movie.service.movie.ApiKeyService;
+import com.dlos.movie.service.movie.BufferedReaderProvider;
 import com.dlos.movie.service.movie.ResourceFileService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -17,13 +18,13 @@ public class ApiKeyServiceImpl implements ApiKeyService
 
 	private Boolean _apiKeyLoaded = false;
 
-	public ApiKeyServiceImpl()
+	public ApiKeyServiceImpl(BufferedReaderProvider readerProvider)
 	{
 		final String API_KEY_FILE = "api.key";
 		ResourceFileService fileService = new ResourceFileServiceImpl();
 		File apiKeyFile = fileService.getFile(API_KEY_FILE);
 
-		try (BufferedReader reader = new BufferedReader(new FileReader(apiKeyFile)))
+		try (BufferedReader reader = readerProvider.createBufferedReader(apiKeyFile))
 		{
 			// Only interested in the first line.
 			_apiKey = reader.readLine();
@@ -41,10 +42,6 @@ public class ApiKeyServiceImpl implements ApiKeyService
 		} catch (IOException e)
 		{
 			System.out.println("An IO Exception occurred: " + e);
-			throw new RuntimeException("Something went wrong", e);
-		} catch (Exception e)
-		{
-			System.out.println("An unknown Exception occurred: " + e);
 			throw new RuntimeException("Something went wrong", e);
 		}
 	}

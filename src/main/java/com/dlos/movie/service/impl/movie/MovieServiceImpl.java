@@ -62,9 +62,7 @@ public class MovieServiceImpl implements MovieService
 				.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
 				.build();
 
-			MovieJson movie = mapper.readValue(json, new TypeReference<MovieJson>()
-			{
-			});
+			MovieJson movie = mapper.readValue(json, new TypeReference<MovieJson>() { });
 			if ((movie == null) || (!movie.getResponse().equals("True")))
 			{
 				return null;
@@ -126,19 +124,16 @@ public class MovieServiceImpl implements MovieService
 		return movies;
 	}
 
-	private MovieJson[] querySingleUrl(String url)
-	{
-		return queryAllUrls(new String[]{url});
-	}
+	private MovieJson[] querySingleUrl(String url) { return queryAllUrls(new String[]{url}); }
 
 	private String[] createUrls(String baseUrl, String[] years, String[] types)
 	{
 		int yearCount = years.length;
-		int genreCount = types.length;
-		int totalUrls = yearCount * genreCount;
+		int typeCount = types.length;
+		int totalUrls = yearCount * typeCount;
 
 		String[] urls = new String[totalUrls == 0 ? 1 : totalUrls];
-		if ((yearCount > 0) && (genreCount > 0))
+		if ((yearCount > 0) && (typeCount > 0))
 		{
 			int index = 0;
 			for (String year : years)
@@ -159,7 +154,7 @@ public class MovieServiceImpl implements MovieService
 			}
 		} else
 		{
-			for (int g = 0; g < genreCount; ++g)
+			for (int g = 0; g < typeCount; ++g)
 			{
 				urls[g] = baseUrl + "&type=" + g;
 			}

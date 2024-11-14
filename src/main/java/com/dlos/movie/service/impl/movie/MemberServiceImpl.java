@@ -1,6 +1,7 @@
 package com.dlos.movie.service.impl.movie;
 
 import com.dlos.movie.domain.Member;
+import com.dlos.movie.service.movie.BufferedReaderProvider;
 import com.dlos.movie.service.movie.MemberService;
 import com.dlos.movie.service.movie.ResourceFileService;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -13,17 +14,17 @@ import java.util.HashMap;
 @Service
 public class MemberServiceImpl implements MemberService
 {
-	private static final HashMap<String, Member> _members = new HashMap<>();
+	private final HashMap<String, Member> _members = new HashMap<>();
 
-	static
+	public MemberServiceImpl(BufferedReaderProvider readerProvider)
 	{
 		final String MEMBER_FILE = "members.json";
 		ResourceFileService fileService = new ResourceFileServiceImpl();
 		File memberFile = fileService.getFile(MEMBER_FILE);
 
-		try (BufferedReader reader = new BufferedReader(new FileReader(memberFile)))
+		try (BufferedReader reader = readerProvider.createBufferedReader(memberFile))
 		{
-			StringBuilder json = new StringBuilder();
+		StringBuilder json = new StringBuilder();
 			String line;
 			while ((line = reader.readLine()) != null)
 			{
