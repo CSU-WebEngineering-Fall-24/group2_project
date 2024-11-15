@@ -88,11 +88,75 @@
 		.memberBioText {
 			display: inline;
 		}
+
+		.movie-card {
+			overflow: hidden;
+		}
+
+		.movie-header {
+			background-color: #2C0B0E;
+			color: #ffffff;
+		}
+
+		.movie-title {
+			flex-grow: 1;
+			margin: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.movie-rating {
+			flex-shrink: 0;
+			padding-left: 10px;
+		}
+
+		.movie-details {
+			overflow-y: auto;
+			max-height: calc(100% - 120px);
+			padding: 15px;
+		}
+
+		.movie-info {
+			color: #757575;
+			font-size: 0.9em;
+			margin-bottom: 5px;
+		}
+
+		.movie-genres {
+			font-weight: bold;
+			margin-bottom: 5px;
+		}
+
+		.movie-director,
+		.movie-cast {
+			margin-bottom: 10px;
+		}
+
+		.movie-cast ul {
+			padding-left: 20px;
+		}
+
+		.movie-button-container {
+			background-color: transparent;
+		}
+
+		.movie-more-button {
+			background-color: #D4A373;
+			border: none;
+			color: #ffffff;
+			border-radius: 5px;
+		}
+
+		.movie-more-button:hover {
+			background-color: #b48846;
+		}
 	</style>
 </head>
 
 <body>
 	<div id='root'>
+
 		Application in progress...
 	</div>
 	<script src="/built/bundle.js"></script>

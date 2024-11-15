@@ -9,7 +9,7 @@
 
 ## Building and Running
 
-1. Navigate to `/src/main/react` and run the command `npm i` to install the front-end dependencies.
+1. Navigate to `/src/main/react` and run the command `npm i` to install the front-end dependencies and `npm run build` to build it.
 2. Run the application from the `src/main/java/com/dlos/movie/MovieApplication.java` file.
 3. Navigate to `http://127.0.0.1:8080/` in the browser to access the application.
 
