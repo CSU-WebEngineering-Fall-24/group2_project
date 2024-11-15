@@ -40,8 +40,8 @@ public class MovieJson
 		Movie movie = new Movie();
 		movie.setTitle(Title);
 		movie.setYear(Year);
-		movie.setRated(Rated.equals(na) ? null : Rated);
-		movie.setReleased(Released.equals(na) ? null : Released);
+		movie.setRated((Rated == null) ||  Rated.equals(na) ? null : Rated);
+		movie.setReleased((Released == null ) || Released.equals(na) ? null : Released);
 		movie.setRuntime(Runtime);
 		movie.setGenres(Genre == null ? null :  Genre.split(","));
 		movie.setDirectors(Director == null ? null :  Director.split(","));
@@ -50,18 +50,18 @@ public class MovieJson
 		movie.setPlot(Plot);
 		movie.setLanguage(Language == null ? null :  Language.split(","));
 		movie.setCountry(Country);
-		movie.setAwards(Awards.equals(na) ? null : Awards);
-		movie.setPoster(Poster.equals(na) ? null : Poster);
+		movie.setAwards((Awards == null) || Awards.equals(na) ? null : Awards);
+		movie.setPoster((Poster == null) || Poster.equals(na) ? null : Poster);
 		movie.setRatings(Ratings);
-		movie.setMetascore(Metascore.equals(na) ? null : Metascore);
-		movie.setImdbRating(imdbRating.equals(na) ? null : imdbRating);
+		movie.setMetascore((Metascore == null) || Metascore.equals(na) ? null : Metascore);
+		movie.setImdbRating((imdbRating == null) || imdbRating.equals(na) ? null : imdbRating);
 		movie.setImdbID(imdbID);
-		movie.setImdbVotes(imdbVotes.equals(na) ? null : imdbVotes);
+		movie.setImdbVotes((imdbVotes == null) || imdbVotes.equals(na) ? null : imdbVotes);
 		movie.setType(Type);
-		movie.setDVD(DVD.equals(na) ? null : DVD);
-		movie.setBoxOffice(BoxOffice.equals(na) ? null : BoxOffice);
-		movie.setProduction(Production.equals(na) ? null : Production);
-		movie.setWebsite(Website.equals(na) ? null : Website);
+		movie.setDVD((DVD == null) || DVD.equals(na) ? null : DVD);
+		movie.setBoxOffice((BoxOffice == null) || BoxOffice.equals(na) ? null : BoxOffice);
+		movie.setProduction((Production == null) || Production.equals(na) ? null : Production);
+		movie.setWebsite((Website == null) || Website.equals(na) ? null : Website);
 		movie.setResponse(Response);
 
 		return movie;
