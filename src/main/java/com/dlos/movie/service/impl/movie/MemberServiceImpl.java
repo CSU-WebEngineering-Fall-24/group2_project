@@ -36,6 +36,7 @@ public class MemberServiceImpl implements MemberService
 
 			for (Member member : members)
 			{
+				member.setId(member.getId().toUpperCase());
 				_members.put(member.getId(), member);
 			}
 		} catch (FileNotFoundException e)
@@ -56,9 +57,9 @@ public class MemberServiceImpl implements MemberService
 	@Override
 	public Member getMember(String id)
 	{
-		if (_members.containsKey(id))
+		if (_members.containsKey(id.toUpperCase()))
 		{
-			return _members.get(id);
+			return _members.get(id.toUpperCase());
 		}
 		return null;
 	}
