@@ -1,34 +1,34 @@
 [
 	{
-	  "id": "d",
-	  "name": "Alexis Davidson",
-	  "shortBio": "",
-	  "longBio": "",
-	  "shortBioImageUrl": "",
-	  "longBioImageUrl": ""
+		"id": "d",
+		"name": "Alexis Davidson",
+		"shortBio": "I am currently a student studying for my Masters in Computer Science, and I am also a lead engineer at a mid-size healthtech company. I have one more semester left to graduate, and am eager to continue refining my skills. I have been a software engineer for a little over 5 years, and during that time I worked on full-stack engineering, mostly within the Microsoft tech stack (C#/ASP.NET, etc.) working on SaaS (Software as a Service) products. ",
+		"longBio": "I am currently a student studying for my Masters in Computer Science, and I am also a lead engineer at a mid-size healthtech company. I have one more semester left to graduate, and am eager to continue refining my skills. I have been a software engineer for a little over 5 years, and during that time I worked on full-stack engineering, mostly within the Microsoft tech stack (C#/ASP.NET, etc.) working on SaaS (Software as a Service) products. Over the past couple of years, I have found myself gravitating towards front-end engineering, and created a new product for my company that is a WYSIWYG editor for our proprietary outbound member communications (PDFs), working closely with HTML structures and Handlebars rendering engine for dynamic content. My current role is overseeing a team of engineers on our Platform team, positioning myself away from SaaS and full-time coding a bit.",
+		"shortBioImageUrl": "https://avatars.githubusercontent.com/u/25669951?s=300&v=4",
+		"longBioImageUrl": "https://avatars.githubusercontent.com/u/25669951?s=300&v=4"
 	},
 	{
-	  "id": "l",
-	  "name": "Nam Luu",
-	  "shortBio": "",
-	  "longBio": "",
-	  "shortBioImageUrl": "",
-	  "longBioImageUrl": ""
+		"id": "l",
+		"name": "Nam Luu",
+		"shortBio": "",
+		"longBio": "",
+		"shortBioImageUrl": "",
+		"longBioImageUrl": ""
 	},
 	{
-	  "id": "o",
-	  "name": "Justin Owens",
-	  "shortBio": "",
-	  "longBio": "",
-	  "shortBioImageUrl": "",
-	  "longBioImageUrl": ""
+		"id": "o",
+		"name": "Justin Owens",
+		"shortBio": "",
+		"longBio": "",
+		"shortBioImageUrl": "",
+		"longBioImageUrl": ""
 	},
 	{
-	  "id": "s",
-	  "name": "Michael K. Sretenović",
-	  "shortBio": "I am currently working on my Masters in Computer Science.  This is my last class and I'm very excited to graduate.  I started my career life as a draftsman in architecture.  In 2002, I went back to get my Bachelor's in Computer Science.  While working full time, I went to school part time and graduated in 2009.  I got a job at CallCopy in 2010 and have been a software engineer ever since.  I work at NICE, which is the number one vendor in Call Center as a Service (CCaaS).",
-	  "longBio": "I am currently working on my Masters in Computer Science.  This is my last class and I'm very excited to graduate.  I started my career life as a draftsman in architecture.  In 2002, I went back to get my Bachelor's in Computer Science.  While working full time, I went to school part time and graduated in 2009.  I got a job at CallCopy in 2010 and have been a software engineer ever since.  I work at NICE, which is the number one vendor in Call Center as a Service (CCaaS).  I work on the Media Services team; which is responsible for moving RTP data and audio through our system.  The work on this team is very interesting as most of the processing as close to real time as possible.  The data that can be handled in a less time restricted manner is one of the projects I am working on.  Essentially, anything that is not time sensitive is being moved to another process without adding any additional delays.  This has been quite challenging and I have had a chance to learn quite a bit.",
-	  "shortBioImageUrl": "https://avatars.githubusercontent.com/u/178439261?v=4",
-	  "longBioImageUrl": "https://avatars.githubusercontent.com/u/178439261?v=4"
+		"id": "s",
+		"name": "Michael K. Sretenović",
+		"shortBio": "I am currently working on my Masters in Computer Science.  This is my last class and I'm very excited to graduate.  I started my career life as a draftsman in architecture.  In 2002, I went back to get my Bachelor's in Computer Science.  While working full time, I went to school part time and graduated in 2009.  I got a job at CallCopy in 2010 and have been a software engineer ever since.  I work at NICE, which is the number one vendor in Call Center as a Service (CCaaS).",
+		"longBio": "I am currently working on my Masters in Computer Science.  This is my last class and I'm very excited to graduate.  I started my career life as a draftsman in architecture.  In 2002, I went back to get my Bachelor's in Computer Science.  While working full time, I went to school part time and graduated in 2009.  I got a job at CallCopy in 2010 and have been a software engineer ever since.  I work at NICE, which is the number one vendor in Call Center as a Service (CCaaS).  I work on the Media Services team; which is responsible for moving RTP data and audio through our system.  The work on this team is very interesting as most of the processing as close to real time as possible.  The data that can be handled in a less time restricted manner is one of the projects I am working on.  Essentially, anything that is not time sensitive is being moved to another process without adding any additional delays.  This has been quite challenging and I have had a chance to learn quite a bit.",
+		"shortBioImageUrl": "https://avatars.githubusercontent.com/u/178439261?v=4",
+		"longBioImageUrl": "https://avatars.githubusercontent.com/u/178439261?v=4"
 	}
 ]
