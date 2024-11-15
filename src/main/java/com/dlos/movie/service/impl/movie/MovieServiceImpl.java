@@ -47,7 +47,7 @@ public class MovieServiceImpl implements MovieService
 	}
 
 	@Override
-	public Movie GetMovie(String id)
+	public Movie getMovie(String id)
 	{
 		if (!_apiKeyLoaded)
 		{
@@ -78,7 +78,7 @@ public class MovieServiceImpl implements MovieService
 	}
 
 	@Override
-	public Movie[] Search(String title, String years, String types)
+	public Movie[] Search(String search, String years, String types)
 	{
 		if (!_apiKeyLoaded)
 		{
@@ -102,7 +102,7 @@ public class MovieServiceImpl implements MovieService
 			genreCount = genreList.length;
 		}
 
-		String encodedTitle = URLEncoder.encode(title, StandardCharsets.UTF_8);
+		String encodedTitle = URLEncoder.encode(search, StandardCharsets.UTF_8);
 		String baseUrl = _searchApiUrl + encodedTitle;
 		MovieJson[] movieJsons = null;
 

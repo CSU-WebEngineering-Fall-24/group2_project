@@ -4,7 +4,7 @@ import com.dlos.movie.domain.Movie;
 
 public interface MovieService
 {
-	Movie GetMovie(String id);
+	Movie getMovie(String id);
 
-	Movie[] Search(String title, String years, String types);
+	Movie[] Search(String search, String years, String types);
 }

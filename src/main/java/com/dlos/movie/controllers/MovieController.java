@@ -16,7 +16,7 @@ public class MovieController
 	public MovieController(@Qualifier("CacheMovieServiceImpl") final MovieService movieService) { _movieService = movieService; }
 
 	@GetMapping("{id}")
-	public Movie Search(@PathVariable("id") String id) { return _movieService.GetMovie(id); }
+	public Movie Search(@PathVariable("id") String id) { return _movieService.getMovie(id); }
 
 	@GetMapping("/search")
 	public Movie[] Search(@RequestParam("title") String title, @RequestParam("years") String years, @RequestParam("types") String types)

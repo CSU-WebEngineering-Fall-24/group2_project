@@ -23,7 +23,6 @@ import java.io.IOException;
 @SpringBootTest
 class MovieServiceTests
 {
-
 	private final MovieJson terminatorJson = new MovieJson()
 	{{
 		setTitle("Terminator");
