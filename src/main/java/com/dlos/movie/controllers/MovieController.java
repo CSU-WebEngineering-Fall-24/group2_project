@@ -19,8 +19,9 @@ public class MovieController
 	public Movie Search(@PathVariable("id") String id) { return _movieService.getMovie(id); }
 
 	@GetMapping("/search")
-	public Movie[] Search(@RequestParam("title") String title, @RequestParam("years") String years, @RequestParam("types") String types)
+	public Movie[] Search(@RequestParam(name = "search") String search, @RequestParam(name = "years", required = false) String years,
+						  @RequestParam(name = "types", required = false) String types)
 	{
-		return _movieService.Search(title, years, types);
+		return _movieService.Search(search, years, types);
 	}
 }

@@ -59,10 +59,12 @@ public class MovieServiceImpl implements MovieService
 			String json = _restTemplate.getForObject(_getMovieApiUrl + id, String.class);
 
 			ObjectMapper mapper = JsonMapper.builder()
-				.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
-				.build();
+					.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
+					.build();
 
-			MovieJson movie = mapper.readValue(json, new TypeReference<MovieJson>() { });
+			MovieJson movie = mapper.readValue(json, new TypeReference<MovieJson>()
+			{
+			});
 			if ((movie == null) || (!movie.getResponse().equals("True")))
 			{
 				return null;
@@ -124,7 +126,10 @@ public class MovieServiceImpl implements MovieService
 		return movies;
 	}
 
-	private MovieJson[] querySingleUrl(String url) { return queryAllUrls(new String[]{url}); }
+	private MovieJson[] querySingleUrl(String url)
+	{
+		return queryAllUrls(new String[]{url});
+	}
 
 	private String[] createUrls(String baseUrl, String[] years, String[] types)
 	{
@@ -165,24 +170,35 @@ public class MovieServiceImpl implements MovieService
 
 	private MovieJson[] queryAllUrls(String[] urls)
 	{
+		final int maxPageQueries = 5;
+		final double omdbReturnCount = 10;
+
 		List<MovieJson> movieJsonList = new ArrayList<MovieJson>();
 		for (String url : urls)
 		{
+			int currentPage = 1;
+			int pageCount = 1;
 			try
 			{
-				String json = _restTemplate.getForObject(url, String.class);
-
-				ObjectMapper mapper = JsonMapper.builder()
-					.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
-					.build();
-
-				SearchResults results = mapper.readValue(json, new TypeReference<SearchResults>() {});
-				if ((results == null) || (!results.getResponse().equals("True")))
+				do
 				{
-					continue;
-				}
+					String json = _restTemplate.getForObject(url + "&page=" + currentPage, String.class);
 
-				movieJsonList.addAll(Arrays.asList(results.getSearch()));
+					ObjectMapper mapper = JsonMapper.builder()
+							.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
+							.build();
+
+					SearchResults results = mapper.readValue(json, new TypeReference<SearchResults>() { });
+					if ((results == null) || (!results.getResponse().equals("True")))
+					{
+						continue;
+					}
+
+					++currentPage;
+					pageCount =  (int)Math.ceil(Integer.parseInt(results.getTotalResults()) / omdbReturnCount);
+
+					movieJsonList.addAll(Arrays.asList(results.getSearch()));
+				} while ((currentPage <= maxPageQueries) && (currentPage <= pageCount));
 			} catch (JsonProcessingException e)
 			{
 				System.out.println("An exception occurred: " + e);
