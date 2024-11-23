@@ -12,3 +12,17 @@ export const chunkArray = (array, size) =>
     }
     return chunks;
   }, []);
+
+/**
+ * Converts a string to title case (capitalize the first letter of each word).
+ * SOURCE: https://www.geeksforgeeks.org/convert-string-to-title-case-in-javascript/
+ * @param {string} input The input string to convert
+ * @returns The title-cased string.
+ */
+export const toTitleCase = (input) => {
+  return input
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};

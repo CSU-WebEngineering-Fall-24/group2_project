@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { toTitleCase } from "../utilities/utils";
 
 const MovieCard = (props) => {
   const { movie } = props;
@@ -23,7 +24,7 @@ const MovieCard = (props) => {
       </div>
       <div className="card-footer d-flex justify-content-between align-items-center movie-button-container">
         <p className="card-text movie-info mb-0">
-          {movie.type} • {movie.year}
+          {toTitleCase(movie.type)} • {movie.year}{" "}
         </p>
         <button
           className="btn btn-primary movie-more-button"
