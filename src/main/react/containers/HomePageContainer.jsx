@@ -87,8 +87,23 @@ const HomePageContainer = () => {
 
 	return (
 		<>
-			<SearchBar></SearchBar>
-			<MovieCarousel movies={movies} />
+			<div className="d-grid gap-3">
+				<div className="container text-center">
+  					<SearchBar></SearchBar>
+				</div>
+			
+  				<h1 className="ps-4">2024 New Releases</h1>
+			
+				<div className="container text-center">
+					<MovieCarousel movies = {movies} />
+				</div>
+			
+  				<h1 className="ps-4">Last Year's Movies</h1>
+			
+				<div className="container text-center">
+					<MovieCarousel movies = {movies} />
+				</div>
+			</div>
 
 			<Pagination items={movies} onClick={handleClick} />
 		</>
