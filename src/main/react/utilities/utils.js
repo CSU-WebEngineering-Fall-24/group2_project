@@ -26,3 +26,35 @@ export const toTitleCase = (input) => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 };
+
+/**
+ * Gets a random search term from a list of predefined options.
+ * @returns The random search term string.
+ */
+export const getRandomSearchTerm = () => {
+  const searches = [
+    "love",
+    "adventure",
+    "mystery",
+    "hero",
+    "power",
+    "dark",
+    "quest",
+    "ghost",
+    "legend",
+    "rise",
+    "war",
+    "family",
+    "lost",
+    "secret",
+    "game",
+    "dream",
+    "revenge",
+    "escape",
+    "monster",
+    "future",
+  ];
+
+  const randomIndex = Math.floor(Math.random() * searches.length);
+  return searches[randomIndex];
+};

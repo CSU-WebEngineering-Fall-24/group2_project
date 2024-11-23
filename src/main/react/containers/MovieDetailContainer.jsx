@@ -16,8 +16,8 @@ const MovieDetailContainer = () => {
         <div className="px-4">
           <h1>{movie?.title}</h1>
           <div className="movie-metadata">
-            {toTitleCase(movie.type)} • {movie?.year} • {movie?.rated} •
-            {movie?.runtime} • {movie.imdbRating} / 10
+            {toTitleCase(movie.type)} • {movie.year} • {movie.rated} •
+            {movie.runtime} • {movie.imdbRating} / 10
           </div>
         </div>
 

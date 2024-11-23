@@ -1,24 +1,25 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toTitleCase } from "../utilities/utils";
-import axios from "axios";
+import { fetchMovieDetails } from "../services/apiService";
 
 const MovieCard = (props) => {
   const { movie } = props;
   const navigate = useNavigate();
 
+  /**
+   * Handles the "More" button click action.
+   * Calls the API to fetch movie details and passes the response data to the movie details view.
+   */
   const handleClick = async () => {
-    const url = "/movie/" + movie.imdbID;
-
     try {
-      const { data } = await axios.get(url);
+      const data = await fetchMovieDetails(movie.imdbID);
 
       navigate("/details", {
         state: {
           movie: data,
         },
       });
-      console.log(data);
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }

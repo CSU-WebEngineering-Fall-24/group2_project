@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchMovies } from "../services/apiService";
 
 const SearchBar = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -9,31 +9,25 @@ const SearchBar = () => {
 
   const navigate = useNavigate();
 
+  /**
+   * Handles the search button click.
+   * Fetches the movies based on the parameters and navigates to the search results page.
+   */
   const handleSearch = async () => {
-    let url = "/movie/search?search=" + searchInput;
-    if (year) {
-      url += "&years=" + year;
-    }
+    const results = await fetchMovies(
+      searchInput,
+      year,
+      type !== "All" ? type : null
+    );
 
-    if (type && type !== "All") {
-      url += "&types=" + type;
-    }
-
-    const result = await axios
-      .get(url)
-      .then((response) => {
-        navigate("/search", {
-          state: {
-            searchInput,
-            year,
-            type,
-            results: response.data,
-          },
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    navigate("/search", {
+      state: {
+        searchInput,
+        year,
+        type,
+        results,
+      },
+    });
   };
 
   return (
