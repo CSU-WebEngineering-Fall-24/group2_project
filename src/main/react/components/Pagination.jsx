@@ -1,49 +1,52 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Pagination = (props) => {
-	var { items, onClick } = props;
+const Pagination = ({ items, currentPage, itemsPerPage, onClick }) => {
+  const pageCount = Math.ceil(items.length / itemsPerPage);
 
-	const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  if (pageCount <= 1) return null; // Disable pagination for 1 page of results
 
-	const maxPageNumbers = 5;
-	const maxPerPage = 15;
-	const pageCount = Math.ceil(items.length / maxPerPage);
-	const pageCountIndex = pageCount - 1;
+  return (
+    <nav>
+      <ul className="pagination justify-content-center">
+        <li className={`page-item ${currentPage === 0 ? "disabled" : ""}`}>
+          <button
+            className="page-link"
+            onClick={() => onClick(currentPage - 1)}
+            aria-label="Previous"
+            disabled={currentPage === 0}
+          >
+            <span aria-hidden="true">&laquo;</span>
+          </button>
+        </li>
 
-	const showLeftEllipsis = (currentPageIndex - 2) > 0;
-	const showRightEllipsis = (currentPageIndex + 3) < pageCount;
+        {Array.from({ length: pageCount }).map((_, index) => (
+          <li
+            key={index}
+            className={`page-item ${index === currentPage ? "active" : ""}`}
+          >
+            <button className="page-link" onClick={() => onClick(index)}>
+              {index + 1}
+            </button>
+          </li>
+        ))}
 
-	let displayPageIndex = (currentPageIndex == pageCountIndex) ? currentPageIndex - 1 : currentPageIndex;
-	displayPageIndex = (currentPageIndex == 0) ? 1 : displayPageIndex;
-
-	function onPageClick(pageIndex) {
-		setCurrentPageIndex(pageIndex);
-		onClick(pageIndex);
-	}
-
-	return (
-		<nav>
-			<ul className="pagination">
-				{(pageCount < 1)
-					? <li>No Contents</li>
-					: <li className={currentPageIndex === 0 ? "active" : ""} onClick={(currentPageIndex !== 0) ? () => { onPageClick(0) } : null}><a href="#" data-page="0">1</a></li>
-				}
-				{(pageCount <= maxPageNumbers)
-					? <>{Array.from({ length: maxPageNumbers - 1 }).map((_, key) => <li className={currentPageIndex === (key + 1) ? "active" : ""} onClick={(currentPageIndex !== (key + 1)) ? () => { onPageClick(key + 1) } : null}> <a href="#" data-page={key + 1}>{key + 2}</a></li>)}</>
-					: <>
-						{showLeftEllipsis && <li>...</li>}
-						{((displayPageIndex - 1) > 0) && <li onClick={() => { onPageClick(displayPageIndex - 1) }}><a href="#" data-page={displayPageIndex - 1}>{displayPageIndex}</a></li>}
-						<li className={currentPageIndex == displayPageIndex ? "active" : ""} onClick={() => { onPageClick(displayPageIndex) }}><a href="#" data-page={displayPageIndex}>{displayPageIndex + 1}</a></li>
-						{((displayPageIndex + 1) < pageCountIndex) && <li onClick={() => { onPageClick(displayPageIndex + 1) }}><a href="#" data-page={displayPageIndex + 1}>{displayPageIndex + 2}</a></li>}
-						{showRightEllipsis && <li>...</li>}
-						<li className={(currentPageIndex === pageCountIndex) ? "active" : ""} onClick={() => { onPageClick(pageCountIndex) }}><a href="#" data-page={pageCountIndex}>{pageCount}</a></li>
-					</>
-				}
-			</ul>
-		</nav >
-	);
-
-
-}
+        <li
+          className={`page-item ${
+            currentPage === pageCount - 1 ? "disabled" : ""
+          }`}
+        >
+          <button
+            className="page-link"
+            onClick={() => onClick(currentPage + 1)}
+            aria-label="Next"
+            disabled={currentPage === pageCount - 1}
+          >
+            <span aria-hidden="true">&raquo;</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
+};
 
 export default Pagination;
