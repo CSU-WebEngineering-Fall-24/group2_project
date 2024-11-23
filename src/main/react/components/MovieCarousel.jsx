@@ -13,7 +13,7 @@ const MovieCarousel = ({ movies, carouselId }) => {
       style={{ padding: 20 }}
     >
       <div className="carousel-inner">
-        {movieChunks.map((chunk, index) => (
+        {movieChunks?.map((chunk, index) => (
           <div
             key={index}
             className={`carousel-item ${index === 0 ? "active" : ""}`}

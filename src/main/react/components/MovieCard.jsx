@@ -1,7 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const MovieCard = (props) => {
   const { movie } = props;
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/details", {
+      state: {
+        movie,
+      },
+    });
+  };
 
   return (
     <div class="card movie-card w-50">
@@ -14,7 +24,7 @@ const MovieCard = (props) => {
           {movie.year} • {movie.rated} • {movie.duration}
         </p>
         <p class="card-text movie-genres">
-          <strong>{movie.genres.join(" • ")}</strong>
+          <strong>{movie.genres?.join(" • ")}</strong>
         </p>
         <p class="card-text movie-director">
           <strong>Directed By:</strong> {movie.director}
@@ -23,13 +33,13 @@ const MovieCard = (props) => {
           <strong>Starring:</strong>
         </p>
         <ul>
-          {movie.cast.map((actor, index) => (
+          {movie.cast?.map((actor, index) => (
             <li key={index}>{actor}</li>
           ))}
         </ul>
       </div>
       <div class="card-footer text-end movie-button-container">
-        <a href="#" class="btn btn-primary movie-more-button">
+        <a class="btn btn-primary movie-more-button" onClick={handleClick}>
           More
         </a>
       </div>
