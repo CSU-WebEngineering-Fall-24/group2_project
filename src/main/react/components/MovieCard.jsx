@@ -1,17 +1,27 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toTitleCase } from "../utilities/utils";
+import axios from "axios";
 
 const MovieCard = (props) => {
   const { movie } = props;
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate("/details", {
-      state: {
-        movie,
-      },
-    });
+  const handleClick = async () => {
+    const url = "/movie/" + movie.imdbID;
+
+    try {
+      const { data } = await axios.get(url);
+
+      navigate("/details", {
+        state: {
+          movie: data,
+        },
+      });
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+    }
   };
 
   return (

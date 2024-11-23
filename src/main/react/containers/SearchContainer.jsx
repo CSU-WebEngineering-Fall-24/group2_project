@@ -15,11 +15,6 @@ const SearchContainer = () => {
     startIndex + itemsPerPage
   );
 
-  console.log("Search Input:", searchInput);
-  console.log("Year:", year);
-  console.log("Type:", type);
-  console.log("Results:", results);
-
   return (
     <div className="container mt-4 search-container">
       <h1>Search Results</h1>
