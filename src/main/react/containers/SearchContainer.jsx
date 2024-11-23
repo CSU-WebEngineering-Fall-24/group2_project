@@ -17,7 +17,21 @@ const SearchContainer = () => {
 
   return (
     <div className="container mt-4 search-container">
-      <h1>Search Results</h1>
+      <h1>Search Results: </h1>
+      <div className="search-terms d-flex align-items-start flex-wrap">
+        {searchInput && (
+          <span className="badge badge-secondary">
+            Search Term: {searchInput}
+          </span>
+        )}
+
+        {year && <span className="badge badge-secondary">Year: {year}</span>}
+
+        {type !== "All" && (
+          <span className="badge badge-secondary">Type: {type}</span>
+        )}
+      </div>
+
       <div className="row">
         {paginatedResults.map((movie, index) => (
           <div className="col-md-4 mb-4" key={index}>
