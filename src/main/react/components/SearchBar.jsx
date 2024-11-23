@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const [searchInput, setSearchInput] = useState("");
-  const [year, setYear] = useState("2024"); // start at current year
+  const [year, setYear] = useState("");
   const [type, setType] = useState("All");
 
   const navigate = useNavigate();
@@ -43,8 +43,11 @@ const SearchBar = () => {
           type="number"
           className="form-control"
           id="yearInput"
-          placeholder="e.g., 2022"
           value={year}
+          placeholder="Year"
+          onFocus={() => {
+            if (!year) setYear("2024");
+          }}
           onChange={(e) => setYear(e.target.value)}
           style={{ maxWidth: "120px" }}
         />

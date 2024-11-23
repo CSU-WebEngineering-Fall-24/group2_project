@@ -14,34 +14,23 @@ const MovieCard = (props) => {
   };
 
   return (
-    <div class="card movie-card w-50">
-      <div class="card-header d-flex justify-content-between align-items-center movie-header">
-        <h5 class="card-title mb-0 movie-title">{movie.title}</h5>
-        <span class="movie-rating">4/5 ⭐</span>
+    <div className="card movie-card w-50">
+      <div className="card-header d-flex justify-content-between align-items-center movie-header">
+        <h5 className="card-title mb-0 movie-title">{movie.title}</h5>
       </div>
-      <div class="card-body movie-details">
-        <p class="card-text movie-info">
-          {movie.year} • {movie.rated} • {movie.duration}
-        </p>
-        <p class="card-text movie-genres">
-          <strong>{movie.genres?.join(" • ")}</strong>
-        </p>
-        <p class="card-text movie-director">
-          <strong>Directed By:</strong> {movie.director}
-        </p>
-        <p class="card-text movie-cast">
-          <strong>Starring:</strong>
-        </p>
-        <ul>
-          {movie.cast?.map((actor, index) => (
-            <li key={index}>{actor}</li>
-          ))}
-        </ul>
+      <div className="card-body movie-details">
+        <img className="movie-poster" src={movie.poster} />
       </div>
-      <div class="card-footer text-end movie-button-container">
-        <a class="btn btn-primary movie-more-button" onClick={handleClick}>
+      <div className="card-footer d-flex justify-content-between align-items-center movie-button-container">
+        <p className="card-text movie-info mb-0">
+          {movie.type} • {movie.year}
+        </p>
+        <button
+          className="btn btn-primary movie-more-button"
+          onClick={handleClick}
+        >
           More
-        </a>
+        </button>
       </div>
     </div>
   );
