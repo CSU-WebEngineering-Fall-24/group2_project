@@ -2,12 +2,12 @@ import React from "react";
 import MovieCard from "./MovieCard";
 import { chunkArray } from "../utilities/utils";
 
-const MovieCarousel = ({ movies }) => {
+const MovieCarousel = ({ movies, carouselId }) => {
   const movieChunks = chunkArray(movies, 3);
 
   return (
     <div
-      id="carouselControls"
+      id={carouselId}
       className="carousel slide"
       data-bs-ride="carousel"
       style={{ padding: 20 }}
@@ -29,7 +29,7 @@ const MovieCarousel = ({ movies }) => {
       <button
         className="carousel-control-prev"
         type="button"
-        data-bs-target="#carouselControls"
+        data-bs-target={`#${carouselId}`}
         data-bs-slide="prev"
       >
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -38,7 +38,7 @@ const MovieCarousel = ({ movies }) => {
       <button
         className="carousel-control-next"
         type="button"
-        data-bs-target="#carouselControls"
+        data-bs-target={`#${carouselId}`}
         data-bs-slide="next"
       >
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
