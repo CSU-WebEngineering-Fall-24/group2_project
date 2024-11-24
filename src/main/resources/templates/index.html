@@ -186,6 +186,15 @@
 			border-radius: 0;
 		}
 
+		.movie-card .card-body {
+			text-align: left;
+		}
+
+		.movie-card h5,
+		.movie-card p {
+			text-align: left;
+		}
+
 		.carousel-inner {
 			padding: 1em;
 		}
@@ -198,6 +207,77 @@
 			border-radius: 50%;
 			top: 50%;
 			transform: translateY(-50%);
+		}
+
+		.search-container .movie-card {
+			width: auto !important;
+		}
+
+		.movie-poster {
+			display: block;
+			margin: 0 auto;
+			height: 250px;
+			border-radius: 8px;
+		}
+
+		.movie-button-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.movie-info {
+			margin: 0;
+			font-size: 0.9em;
+			color: #757575;
+		}
+
+		.movie-more-button {
+			background-color: #D4A373;
+			border: none;
+			color: #ffffff;
+			border-radius: 5px;
+		}
+
+		.movie-more-button:hover {
+			background-color: #b48846;
+		}
+
+		.movie-metadata {
+			color: #757575
+		}
+
+		.search-terms {
+			height: 25px;
+			margin-bottom: 20px;
+		}
+
+		.badge {
+			height: 100%;
+			color: white;
+			background-color: #C28B8E;
+			margin-right: 10px;
+		}
+
+		.pagination .page-item .page-link {
+			background-color: transparent;
+			color: black;
+			border: 1px solid #dee2e6;
+		}
+
+		.pagination .page-item.active .page-link {
+			background-color: #C28B8E;
+			color: white;
+			border: none;
+		}
+
+		.pagination .page-item .page-link:hover {
+			background-color: #f2d9da;
+			color: black;
+		}
+
+		.pagination .page-item.disabled .page-link {
+			color: #dee2e6;
 		}
 	</style>
 </head>

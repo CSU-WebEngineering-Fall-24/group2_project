@@ -1,37 +1,48 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { toTitleCase } from "../utilities/utils";
+import { fetchMovieDetails } from "../services/apiService";
 
 const MovieCard = (props) => {
   const { movie } = props;
+  const navigate = useNavigate();
+
+  /**
+   * Handles the "More" button click action.
+   * Calls the API to fetch movie details and passes the response data to the movie details view.
+   */
+  const handleClick = async () => {
+    try {
+      const data = await fetchMovieDetails(movie.imdbID);
+
+      navigate("/details", {
+        state: {
+          movie: data,
+        },
+      });
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+    }
+  };
 
   return (
-    <div class="card movie-card w-50">
-      <div class="card-header d-flex justify-content-between align-items-center movie-header">
-        <h5 class="card-title mb-0 movie-title">{movie.title}</h5>
-        <span class="movie-rating">4/5 ⭐</span>
+    <div className="card movie-card w-50">
+      <div className="card-header d-flex justify-content-between align-items-center movie-header">
+        <h5 className="card-title mb-0 movie-title">{movie.title}</h5>
       </div>
-      <div class="card-body movie-details">
-        <p class="card-text movie-info">
-          {movie.year} • {movie.rated} • {movie.duration}
-        </p>
-        <p class="card-text movie-genres">
-          <strong>{movie.genres.join(" • ")}</strong>
-        </p>
-        <p class="card-text movie-director">
-          <strong>Directed By:</strong> {movie.director}
-        </p>
-        <p class="card-text movie-cast">
-          <strong>Starring:</strong>
-        </p>
-        <ul>
-          {movie.cast.map((actor, index) => (
-            <li key={index}>{actor}</li>
-          ))}
-        </ul>
+      <div className="card-body movie-details">
+        <img className="movie-poster" src={movie.poster} />
       </div>
-      <div class="card-footer text-end movie-button-container">
-        <a href="#" class="btn btn-primary movie-more-button">
+      <div className="card-footer d-flex justify-content-between align-items-center movie-button-container">
+        <p className="card-text movie-info mb-0">
+          {toTitleCase(movie.type)} • {movie.year}{" "}
+        </p>
+        <button
+          className="btn btn-primary movie-more-button"
+          onClick={handleClick}
+        >
           More
-        </a>
+        </button>
       </div>
     </div>
   );

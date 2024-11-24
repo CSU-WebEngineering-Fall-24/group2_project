@@ -1,7 +1,12 @@
+/** @type { import('@types/jest').InitialOptionsTsJest } */
+
 const { TestEnvironment } = require('jest-environment-jsdom');
 
-/** @type { import('@types/jest').InitialOptionsTsJest } */
 module.exports = {
-	TestEnvironment: "node",
-	testPathIgnorePatters: ["node_modules", "build", "dist"]
+	testEnvironment: "jsdom",
+	testPathIgnorePatterns: ["node_modules", "build", "dist"],
+	collectCoverage: true,
+	collectCoverageFrom: ["src/**/*.{js,jsx}"],
+	coverageDirectory: "coverage",
+	setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
 };

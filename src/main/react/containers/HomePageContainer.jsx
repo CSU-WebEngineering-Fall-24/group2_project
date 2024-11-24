@@ -1,98 +1,61 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import MovieCarousel from "../components/MovieCarousel";
-import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
+import { fetchMovies } from "../services/apiService";
+import { getRandomSearchTerm } from "../utilities/utils";
 
 const HomePageContainer = () => {
-	const [movieList, setMovieList] = useState(null);
-	useEffect(() => {
-		const fetchMovies = async () => {
-			const searches = ["bear", "alien", "king", "dragon", "godzilla",
-				"duck", "barbie", "transformers", "treasure", "dinosaur"];
+  const [movies2024, setMovies2024] = useState(null);
+  const [movies2023, setMovies2023] = useState(null);
 
-			const index = Math.floor(Math.random(searches.length - 1) * searches.length);
-			const url = "/movie/search?search=" + searches[index];
+  useEffect(() => {
+    const fetchMovieData = async () => {
+      try {
+        // 2024 movies with a random search term
+        const result2024 = await fetchMovies(
+          getRandomSearchTerm(),
+          "2024",
+          "Movie"
+        );
+        setMovies2024(result2024);
 
-			const result = await axios.get(url)
-				.then(response => {
-					console.log("Movies Returned:")
-					console.log(response.data);
-					setMovieList(response.data);
-				})
-				.catch(error => {
-					console.error(error);
-				})
-		};
+        // 2023 movies with a different random search term
+        const result2023 = await fetchMovies(
+          getRandomSearchTerm(),
+          "2023",
+          "Movie"
+        );
 
-		fetchMovies();
-	}, []);
+        setMovies2023(result2023);
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      }
+    };
 
-	const movies = [
-		{
-			title: "Movie Title",
-			year: "2024",
-			rated: "PG",
-			duration: "2h 21m",
-			genres: ["Drama", "Horror", "Comedy"],
-			director: "John Doe",
-			cast: ["John Smith", "Jane Doe"],
-			rating: "4/5",
-		},
-		{
-			title: "Movie Title 2",
-			year: "2024",
-			rated: "PG",
-			duration: "2h 21m",
-			genres: ["Drama", "Horror", "Comedy"],
-			director: "John Doe",
-			cast: ["John Smith", "Jane Doe"],
-			rating: "4/5",
-		},
-		{
-			title: "Movie Title 3",
-			year: "2024",
-			rated: "PG",
-			duration: "2h 21m",
-			genres: ["Drama", "Horror", "Comedy"],
-			director: "John Doe",
-			cast: ["John Smith", "Jane Doe"],
-			rating: "4/5",
-		},
-		{
-			title: "Movie Title 4",
-			year: "2024",
-			rated: "PG",
-			duration: "2h 21m",
-			genres: ["Drama", "Horror", "Comedy"],
-			director: "John Doe",
-			cast: ["John Smith", "Jane Doe"],
-			rating: "4/5",
-		},
-		{
-			title: "Movie Title 5",
-			year: "2024",
-			rated: "PG",
-			duration: "2h 21m",
-			genres: ["Drama", "Horror", "Comedy"],
-			director: "John Doe",
-			cast: ["John Smith", "Jane Doe"],
-			rating: "4/5",
-		},
-	];
+    fetchMovieData();
+  }, []);
 
-	function handleClick(pageIndex) {
-		console.log("Page Index from callback: " + pageIndex);
-	}
+  return (
+    <>
+      <div className="d-grid gap-3">
+        <div className="container text-center">
+          <SearchBar></SearchBar>
+        </div>
 
-	return (
-		<>
-			<SearchBar></SearchBar>
-			<MovieCarousel movies={movies} />
+        <h1 className="ps-4">2024 Releases</h1>
 
-			<Pagination items={movies} onClick={handleClick} />
-		</>
-	);
+        <div className="container text-center">
+          <MovieCarousel movies={movies2024} carouselId="carousel1" />
+        </div>
+
+        <h1 className="ps-4">2023 Releases</h1>
+
+        <div className="container text-center">
+          <MovieCarousel movies={movies2023} carouselId="carousel2" />
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default HomePageContainer;
