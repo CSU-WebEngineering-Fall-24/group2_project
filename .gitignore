@@ -45,3 +45,5 @@ api.key
 ### Temp Files ###
 ~$*.doc
 ~$*.docx
+
+**/coverage/**

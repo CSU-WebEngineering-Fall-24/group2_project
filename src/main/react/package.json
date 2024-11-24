@@ -4,7 +4,7 @@
 	"description": "Group 2 consists of:\r - Davidson, Alexis\r - Luu, Nam\r - Owens, Justin\r - Sretenović, Michael",
 	"main": "App.js",
 	"scripts": {
-		"test": "jest",
+		"test": "jest --runInBand",
 		"build": "npx webpack build"
 	},
 	"author": "",
