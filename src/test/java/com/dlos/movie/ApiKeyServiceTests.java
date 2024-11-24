@@ -13,11 +13,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @SpringBootTest
-public class ApiKeyServiceTests
-{
+public class ApiKeyServiceTests {
 	@Test
-	void TestSuccessfullyReadsApiKeyFile() throws IOException
-	{
+	void TestSuccessfullyReadsApiKeyFile() throws IOException {
 		String expectedValue = "fakeapikey";
 
 		BufferedReader reader = Mockito.mock(BufferedReader.class);
@@ -33,34 +31,30 @@ public class ApiKeyServiceTests
 	}
 
 	@Test
-	void TestFailsToFindFile() throws Exception
-	{
+	void TestFailsToFindFile() throws Exception {
 		BufferedReader reader = Mockito.mock(BufferedReader.class);
 		Mockito.when(reader.readLine()).thenThrow(new FileNotFoundException());
 
 		BufferedReaderProvider readerProvider = Mockito.mock(BufferedReaderProvider.class);
 		Mockito.when(readerProvider.createBufferedReader(Mockito.any())).thenReturn(reader);
 
-		RuntimeException ex = Assertions.assertThrows(RuntimeException.class, () ->
-		{
-			ApiKeyService keyService = new ApiKeyServiceImpl(readerProvider);
+		RuntimeException ex = Assertions.assertThrows(RuntimeException.class, () -> {
+			new ApiKeyServiceImpl(readerProvider);
 		});
 
 		Assertions.assertInstanceOf(FileNotFoundException.class, ex.getCause());
 	}
 
 	@Test
-	void TestFailsToReadFile() throws Exception
-	{
+	void TestFailsToReadFile() throws Exception {
 		BufferedReader reader = Mockito.mock(BufferedReader.class);
 		Mockito.when(reader.readLine()).thenThrow(new IOException());
 
 		BufferedReaderProvider readerProvider = Mockito.mock(BufferedReaderProvider.class);
 		Mockito.when(readerProvider.createBufferedReader(Mockito.any())).thenReturn(reader);
 
-		RuntimeException ex = Assertions.assertThrows(RuntimeException.class, () ->
-		{
-			ApiKeyService keyService = new ApiKeyServiceImpl(readerProvider);
+		RuntimeException ex = Assertions.assertThrows(RuntimeException.class, () -> {
+			new ApiKeyServiceImpl(readerProvider);
 		});
 
 		Assertions.assertInstanceOf(IOException.class, ex.getCause());

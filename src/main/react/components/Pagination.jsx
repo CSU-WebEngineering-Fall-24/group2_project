@@ -29,7 +29,7 @@ const Pagination = (props) => {
 					: <li className={currentPageIndex === 0 ? "active" : ""} onClick={(currentPageIndex !== 0) ? () => { onPageClick(0) } : null}><a href="#" data-page="0">1</a></li>
 				}
 				{(pageCount <= maxPageNumbers)
-					? <>{Array.from({ length: maxPageNumbers - 1 }).map((_, key) => <li className={currentPageIndex === (key + 1) ? "active" : ""} onClick={(currentPageIndex !== (key + 1)) ? () => { onPageClick(key + 1) } : null}> <a href="#" data-page={key + 1}>{key + 2}</a></li>)}</>
+					? <>{Array.from({ length: pageCount - 1 }).map((_, key) => <li key={key} className={currentPageIndex === (key + 1) ? "active" : ""} onClick={(currentPageIndex !== (key + 1)) ? () => { onPageClick(key + 1) } : null}> <a href="#" data-page={key + 1}>{key + 2}</a></li>)}</>
 					: <>
 						{showLeftEllipsis && <li>...</li>}
 						{((displayPageIndex - 1) > 0) && <li onClick={() => { onPageClick(displayPageIndex - 1) }}><a href="#" data-page={displayPageIndex - 1}>{displayPageIndex}</a></li>}
@@ -42,8 +42,6 @@ const Pagination = (props) => {
 			</ul>
 		</nav >
 	);
-
-
 }
 
 export default Pagination;
