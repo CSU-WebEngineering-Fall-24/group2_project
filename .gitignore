@@ -46,4 +46,5 @@ api.key
 ~$*.doc
 ~$*.docx
 
-**/coverage/**
+### Test Coverage ###
+**/coverage
