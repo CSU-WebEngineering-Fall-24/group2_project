@@ -3,7 +3,7 @@ import React from "react";
 const Member = (props) => {
 	const { member } = props;
 	return (
-		<div className="memberCard">
+		<div>
 			{member && member.name
 				? <>
 					<div className="memberHeader">{member.name}</div>
