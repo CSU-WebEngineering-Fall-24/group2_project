@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router-dom";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../../components/SearchBar";
 
 const mockNavigate = jest.fn();
 
@@ -11,7 +11,7 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigate,
 }));
 
-jest.mock("../services/apiService", () => ({
+jest.mock("../../services/apiService", () => ({
   fetchMovies: jest.fn(() => Promise.resolve([])),
 }));
 

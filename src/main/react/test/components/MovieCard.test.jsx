@@ -1,10 +1,10 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { useNavigate } from "react-router-dom";
-import MovieCard from "../components/MovieCard";
-import { fetchMovieDetails } from "../services/apiService";
+import MovieCard from "../../components/MovieCard";
+import { fetchMovieDetails } from "../../services/apiService";
 
-jest.mock("../services/apiService");
+jest.mock("../../services/apiService");
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: jest.fn(),

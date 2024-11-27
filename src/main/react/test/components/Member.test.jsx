@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Member from "../components/Member";
+import Member from "../../components/Member";
 
 describe("Member", () => {
   test("Render with no image", () => {

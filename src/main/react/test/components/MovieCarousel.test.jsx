@@ -1,13 +1,13 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import MovieCarousel from "../components/MovieCarousel";
-import { chunkArray } from "../utilities/utils";
+import MovieCarousel from "../../components/MovieCarousel";
+import { chunkArray } from "../../utilities/utils";
 
-jest.mock("../utilities/utils", () => ({
+jest.mock("../../utilities/utils", () => ({
   chunkArray: jest.fn(),
 }));
 
-jest.mock("../components/MovieCard", () => ({ movie }) => (
+jest.mock("../../components/MovieCard", () => ({ movie }) => (
   <div data-testid="movie-card">{movie.title}</div>
 ));
 
