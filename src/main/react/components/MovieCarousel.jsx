@@ -11,11 +11,14 @@ const MovieCarousel = ({ movies, carouselId }) => {
       className="carousel slide"
       data-bs-ride="carousel"
       style={{ padding: 20 }}
+      aria-label={`carousel ${carouselId}`}
     >
       <div className="carousel-inner">
         {movieChunks?.map((chunk, index) => (
           <div
             key={index}
+            role="listitem"
+            aria-current={index === 0 ? "true" : undefined}
             className={`carousel-item ${index === 0 ? "active" : ""}`}
           >
             <div className="d-flex justify-content-center cards-wrapper">
