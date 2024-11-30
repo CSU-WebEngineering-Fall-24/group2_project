@@ -10,7 +10,7 @@
 ## Building and Running
 
 1. Navigate to `/src/main/react` and run the command `npm i` to install the front-end dependencies and `npm run build` to build it.
-2. Add the OMDB API Key in the `api.key` file. See _Connecting to the OMDB API_ for information on getting a key allocated for the first time.
+2. Add a file named `api.key` to the resources folder (i.e. `src/main/resources/api.key`) with your personal API key. See _Connecting to the OMDB API_ for information on getting a key allocated for the first time.
 4. Run the application from the `src/main/java/com/dlos/movie/MovieApplication.java` file.
 5. Navigate to `http://127.0.0.1:8080/` in the browser to access the application.
 
