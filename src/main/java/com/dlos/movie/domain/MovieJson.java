@@ -17,6 +17,7 @@ public class MovieJson
 	private String Writer;
 	private String Actors;
 	private String Plot;
+	private String TotalSeasons;
 	private String Language;
 	private String Country;
 	private String Awards;
@@ -48,6 +49,7 @@ public class MovieJson
 		movie.setWriters(Writer == null ? null :  Writer.split(","));
 		movie.setActors(Actors == null ? null :  Actors.split(","));
 		movie.setPlot(Plot);
+		movie.setTotalSeasons(TotalSeasons);
 		movie.setLanguage(Language == null ? null :  Language.split(","));
 		movie.setCountry(Country);
 		movie.setAwards((Awards == null) || Awards.equals(na) ? null : Awards);

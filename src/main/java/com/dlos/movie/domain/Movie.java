@@ -17,6 +17,7 @@ public class Movie
 	private String[] Writers;
 	private String[] Actors;
 	private String Plot;
+	private String TotalSeasons;
 	private String[] Language;
 	private String Country;
 	private String Awards;
