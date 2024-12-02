@@ -31,11 +31,9 @@ const MovieDetailContainer = () => {
         <div className="px-4">
           <h1>Summary</h1>
           <p>{movie?.plot}</p>
-          {movie.genres?.map((genre, index) => (
-            <a className="btn btn-primary" href="#" role="button" key={index}>
-              {genre}
-            </a>
-          ))}
+          <div>
+            {movie.genres?.join(", ")}
+          </div>
         </div>
 
         <div className="px-4">
