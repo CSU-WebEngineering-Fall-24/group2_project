@@ -62,4 +62,4 @@ Ensure you have the following installed:
 
 [GitHub Issue Tracker](https://github.com/orgs/CSU-WebEngineering-Fall-24/projects/2) - Active tracking of issues, bugs, and feature requests.
 
-[OMDB API](https://www.omdbapi.com/)
+[OMDB API](https://www.omdbapi.com/) - The RESTful API used for fetching movie and TV show data.
