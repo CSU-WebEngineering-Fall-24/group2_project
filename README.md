@@ -7,6 +7,12 @@
 - Owens, Justin
 - Sretenović, Michael
 
+## About The Project 
+
+### Summary
+
+The DLOS web appliction allows the user to query movies and shows and view relevant information as provided by the OMDB API. The [OMDB API](https://www.omdbapi.com/) is a RESTful web service to obtain movie information, and allows for movie and tv series information to be fetched, including data points such as a movie's title, description, movie poster, actors, and more.
+
 ## Building and Running
 
 1. Navigate to `/src/main/react` and run the command `npm i` to install the front-end dependencies and `npm run build` to build it.
