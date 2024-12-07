@@ -13,7 +13,7 @@ const AboutContainer = () => {
 
 	return (
 		<>
-			<div className="projInfo">Dr. Canedo instructed the students of Web Engineering Tehnologies (CPSC6175) that we would be completing  a group project that consisted of developing a full stack application for a client. The client is asking for a full stack website that uses java and react and showcases an API of the groups choosing. Dr. Canedo assigned the following individuals to group 2:  Alexis Davidson, Nam Luu, Justin Owens and Michael Sretenovic. As a group we chose the TV and Movie API, where the client would be able to search for their favorite shows and movies. Below you will find out information about each group member.</div>
+			<div className="projInfo">Dr. Canedo instructed the students of Web Engineering Technologies (CPSC6175) that we would be completing a group project that consisted of developing a full stack application for a client. The client is asking for a full stack website that uses java and react and showcases an API of the groups choosing. Dr. Canedo assigned the following individuals to group 2:  Alexis Davidson, Nam Luu, Justin Owens and Michael Sretenovic. As a group we chose the TV and Movie API, where the client would be able to search for their favorite shows and movies. Below you will find out information about each group member.</div>
 			<div className="memberBios">
 				{Array.from({ length: columnCount }, (_, index) => {
 					return (
